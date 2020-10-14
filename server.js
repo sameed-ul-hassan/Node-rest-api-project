@@ -12,6 +12,8 @@ dotenv.config({ path: "./config/config.env" });
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+// Request body parser
+app.use(express.json());
 // Connect to database
 connectDB();
 // Dev logging middleware
