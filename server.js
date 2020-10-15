@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/error");
 // Middlewares
 const morgan = require("morgan");
 // Route Files
@@ -23,6 +24,9 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount routers
 app.use("/api/v1/bootcamps", bootcamps);
+
+// Pass request through error handler middleware
+app.use(errorHandler);
 const server = app.listen(PORT, () => {
     console.log(
         `App is running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
